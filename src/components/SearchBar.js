@@ -1,14 +1,16 @@
 import React, { useState } from "react";
+import { useVideo } from "../contexts/VideoContext";
 import "./SearchBar.css";
 
-export default function SearchBar({ getVideos }) {
+export default function SearchBar() {
   const [input, setInput] = useState("");
+  const { actions: { getVideos } } = useVideo();
+
   const onFormSubmit = (e) => {
     e.preventDefault();
     getVideos(input);
   };
   return (
-    <>
       <form className="search" onSubmit={onFormSubmit}>
         <div className="input-group mb-3">
           <input
@@ -25,6 +27,5 @@ export default function SearchBar({ getVideos }) {
           </div>
         </div>
       </form>
-    </>
   );
 }
